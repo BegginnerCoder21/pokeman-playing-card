@@ -1,12 +1,11 @@
-<div id="search-bar-container">
+<!-- <div id="search-bar-container">
 	<app-search-bar [(search)]="search" (searchButtonClicked) = "increaseCount()" />
     Search : {{ search }} <br>
     Click count :  {{ count }}
-</div>
-
-<!-- <div id="card-list">
-    <app-playing-card />
-    <app-playing-card [monster]="monster1" />
-
 </div> -->
+<button (click)="toggleMonster()">Aller au monstre suivant</button>
+<div id="card-list">
+    <app-playing-card [monster]="selectedMonster()" />
+
+</div>
 <router-outlet/>

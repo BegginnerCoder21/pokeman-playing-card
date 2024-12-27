@@ -16,8 +16,4 @@ export class SearchBarComponent {
     this.searchButtonClicked.emit();
   }
 
-  updateInput(value: string){
-    
-    this.search.set(value);
-  }
 }
