@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchBarComponent {
 
-  search = model<string>("Initial");
+  search = model<string>("");
 
   searchButtonClicked = output();
   searchClick(){

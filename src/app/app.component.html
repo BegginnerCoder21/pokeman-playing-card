@@ -1,11 +1,9 @@
-<!-- <div id="search-bar-container">
-	<app-search-bar [(search)]="search" (searchButtonClicked) = "increaseCount()" />
-    Search : {{ search }} <br>
-    Click count :  {{ count }}
-</div> -->
-<button (click)="toggleMonster()">Aller au monstre suivant</button>
+<div id="search-bar-container">
+	<app-search-bar [(search)]="search"  />
+
+</div> 
 <div id="card-list">
-    <app-playing-card [monster]="selectedMonster()" />
+    <app-playing-card *ngFor="let monster of filteredMonsters()" [monster]="monster" />
 
 </div>
 <router-outlet/>
