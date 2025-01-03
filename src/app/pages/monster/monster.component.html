@@ -1,7 +1,85 @@
-@if (monsterId()) {
-    <p>monster {{ monsterId() }}!</p>
-    <button (click)="next()">Next</button>
-}@else {
-    <p>monster works!</p>
 
-}
+<div class="preview">
+	<app-playing-card [monster]="monster"/>
+</div>
+<div class="main">
+	<form [formGroup]="formGroup" (submit)="submit($event)">
+		<div class="form-field">
+			<label for="name">Nom</label>
+			<input id="name" name="name" type="text" formControlName="name">
+			@if (isFieldValid('name')) {
+				<div class="error">Ce champ est obligatoire.</div>
+			}
+		</div>
+		<div class="form-field">
+			<label for="image">Image</label>
+			<input id="image" name="image" type="file" (change)="onFileChange($event)">
+			@if (isFieldValid('image')) {
+				<div class="error">Ce champ est obligatoire.</div>
+			}
+		</div>
+		<div class="form-field">
+			<label for="type">Type</label>
+			<select id="type" name="type" formControlName="type">
+			@for (type of monsterTypes; track type) {
+				<option [value]="type">{{type}}</option>
+			}
+			</select>
+		</div>
+		<div class="form-field">
+			<label for="hp">HP</label>
+			<input id="hp" name="hp" type="number" formControlName="hp">
+			@if (isFieldValid('hp')) {
+			   @if (formGroup.get('hp')?.hasError('required')) {
+					<div class="error">Un numéro valide est requis.</div>
+				}
+				@if (formGroup.get('hp')?.hasError('min')) {
+					<div class="error">Ce champ doit être supérieur à 0.</div>
+				}
+				@if (formGroup.get('hp')?.hasError('max')) {
+					<div class="error">Ce champ doit être inférieur ou égal à 200.</div>
+				}
+			}
+		</div>
+		<div class="form-field">
+			<label for="numberMonster">Légende de la figure</label>
+			<input id="numberMonster" name="numberMonster" type="text" formControlName="numberMonster">
+			@if (isFieldValid('figureCaption')) {
+				<div class="error">Ce champ est obligatoire.</div>
+			}
+		</div>
+		<div class="form-field">
+			<label for="attackName">Nom de l'attaque</label>
+			<input id="attackName" name="attackName" type="text" formControlName="attackName">
+			@if (isFieldValid('attackName')) {
+				<div class="error">Ce champ est obligatoire.</div>
+			}
+		</div>
+		<div class="form-field">
+			<label for="attackNumber">Force d'attaque</label>
+			<input id="attackNumber" name="attackNumber" type="number" formControlName="attackNumber">
+			@if (isFieldValid('attackNumber')) {
+			   @if (formGroup.get('attackNumber')?.hasError('required')) {
+					<div class="error">Un numéro valide est requis.</div>
+				}
+				@if (formGroup.get('attackNumber')?.hasError('min')) {
+					<div class="error">Ce champ doit être supérieur à 0.</div>
+				}
+				@if (formGroup.get('attackNumber')?.hasError('max')) {
+					<div class="error">Ce champ doit être inférieur ou égal à 200.</div>
+				}
+			}
+		</div>
+		<div class="form-field">
+			<label for="attackDescription">Description de l'attaque</label>
+			<input id="attackDescription" name="attackDescription" type="text" formControlName="attackDescription">
+			@if (isFieldValid('attackDescription')) {
+				<div class="error">Ce champ est obligatoire.</div>
+			}
+		</div>
+		<div class="button-container">
+			<button (click)="navigateBack()" >Retour à l'accueil</button>
+			<button type="submit" [disabled]="formGroup.invalid">Sauvergarder</button>
+		</div>
+	 </form>
+</div>

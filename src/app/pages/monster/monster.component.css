@@ -1,0 +1,41 @@
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.preview, .main {
+    display: inline-block;
+    vertical-align: top;
+}
+label {
+    font-size: small;
+}
+
+form {
+    max-width: 300px;
+}
+
+.ng-dirty.ng-invalid, .ng-touched.ng-invalid{
+
+    border-color: red;
+    border-width: 2px;
+}
+
+.preview {
+    width: 300px;
+    margin: 20px;
+}
+
+.main {
+    width: calc(100% - 340px);
+}
+
+
+.error{
+    color: red;
+    font-size: x-small;
+}
+.button-container {
+    display: flex;
+    gap: 10px;
+}
