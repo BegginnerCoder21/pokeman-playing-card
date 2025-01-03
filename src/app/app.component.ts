@@ -9,36 +9,10 @@ import { MonsterService } from './services/monster/monster.service';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule,RouterOutlet, PlayingCardComponent, SearchBarComponent],
+  imports: [CommonModule,RouterOutlet],
   templateUrl:'./app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  
-  monsters = signal<Monster[]>([]);
-  search  = signal('');
-  monsterService = inject(MonsterService);
-
-  
-    constructor(){
-  
-      // localStorage.removeItem('monsters');
-      this.monsters.set(this.monsterService.getAll());
-      
-    }
-
-  filteredMonsters = computed(() => {
-  
-    return this.monsters().filter((monster) => monster.name.toLowerCase().includes(this.search().toLowerCase())
-  );
-    
-  });
  
-
-  addGenericMonster(){
-    const monster = new Monster();
-    this.monsterService.add(monster);
-    this.monsters.set(this.monsterService.getAll())
-  }
-
 }
