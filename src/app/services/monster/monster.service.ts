@@ -139,9 +139,10 @@ export class MonsterService {
 
   delete(deleteMonsterId: number)
   {
-    const monsters = this.monsters.filter((monster) => monster.id !== deleteMonsterId);
+    
+    this.monsters = this.monsters.filter((monster) => monster.id !== deleteMonsterId);
     this.save();
-    return monsters;
+    return this.monsters;
   }
 
 }
